@@ -11,13 +11,15 @@ from aws_cdk import (
 )
 from constructs import Construct
 
+dirname = os.path.dirname(__file__)
+
 class CdkLabWebServerStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Create VPC with public subnet
-        vpc = ec2.Vpc(
+        cdk_lab_vpc = ec2.Vpc(
             self, "cdk_lab_vpc",
             cidr="10.0.0.0/16",
             max_azs=1,
